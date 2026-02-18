@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTTC FAQ Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #chatbot {
+            width: 350px;
+            height: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #messages {
+            height: 450px;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+        .user {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: white;
+        }
+        .bot {
+            align-self: flex-start;
+            background-color: #e2e2e2;
+            color: black;
+        }
+        #input {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            background-color: white;
+        }
+        #userInput {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #sendButton {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #sendButton:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<h1>KTTC FAQ Chatbot</h1>
+<div id="chatbot">
+    <div id="messages"></div>
+    <div id="input">
+        <input type="text" id="userInput" placeholder="Ask me anything...">
+        <button id="sendButton">Send</button>
+    </div>
+</div>
+
+<script>
+    const messagesDiv = document.getElementById('messages');
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('sendButton');
+
+    const responses = {
+        "What courses does KTTC offer?": "KTTC offers a variety of courses in engineering, business, and technical training. You can find a complete list of courses on our website.",
+        "How can I apply for admission?": "To apply for admission, visit our admissions page on the KTTC website and fill out the online application form.",
+        "Are there any scholarships available?": "Yes, KTTC offers several scholarships based on merit and need. Please check our scholarship page for more details.",
+        "What are the tuition fees?": "Tuition fees vary by course. For detailed information, please refer to the fees structure on our website.",
+        "What facilities are available on campus?": "KTTC provides modern classrooms, laboratories, a library, and recreational facilities to enhance the learning experience.",
+        "How can I contact the administration?": "You can contact the KTTC administration via email at info@kttc.ac.ke or call us at +254 700 000 000.",
+        "What is the academic calendar?": "The academic year at KTTC typically starts in September and runs until June. For specific dates, please check the academic calendar on our website.",
+        "Do you offer part-time courses?": "Yes, KTTC offers part-time courses in various fields. Please visit our courses page for more information.",
+        "Is there accommodation available for students?": "Yes, KTTC provides accommodation for students on campus. You can find more details on our website."
+    };
+
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.innerText = text;
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to the bottom
+    }
+
+    function handleUserInput() {
+        const userText = userInput.value.trim();
+        if (userText) {
+            addMessage(userText, 'user');
+            userInput.value = '';
+
+            const botResponse = responses[userText] || "I'm sorry, I don't understand that. Please ask another question.";
+            setTimeout(() => {
+                addMessage(botResponse, 'bot');
+            }, 500);
+        }
+    }
+
+    sendButton.addEventListener('click', handleUserInput);
+    userInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            handleUserInput();
+        }
+    });
+</script>
+
+</body>
+</html>
