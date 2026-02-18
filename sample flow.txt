@@ -1,0 +1,8 @@
+User: Hi, I have a question about admission.
+Chatbot: Hello! Welcome to KTTC. What would you like to know about the admission process?
+User: What are the requirements for admission?
+Chatbot: To apply for admission, you need to have completed your secondary education. Please visit our admissions page for a detailed list of requirements.
+User: Are there any scholarships available?
+Chatbot: Yes, we offer several scholarships. You can find more information on our scholarship page. Would you like to know about specific scholarships?
+User: Yes, please.
+Chatbot: We offer merit-based and need-based scholarships. You can apply for these during the admission process. Is there anything else I can help you with?
